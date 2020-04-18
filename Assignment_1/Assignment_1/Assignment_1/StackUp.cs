@@ -28,7 +28,7 @@ namespace MyCollections
 
         public void Push(T item)
         {
-            head = new Node() { item = item, next = null };
+            head = new Node() { item = item, next = head };
             count++;
         }
 
@@ -38,11 +38,16 @@ namespace MyCollections
                 throw new StackEmptyException();
             T item = head.item;
             head = head.next;
+            count--;
             return item;
         }
 
         public T Peek()
         {
+            if (head == null)
+            {
+                throw new StackEmptyException();
+            }
             return head.item;
         }
     }
