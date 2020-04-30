@@ -9,6 +9,7 @@ namespace PokerLibrary
 {
     public class PokerHand : IHand
     {
+        public int Count => throw new NotImplementedException();
 
         public PokerHand()
         {
