@@ -70,7 +70,7 @@ namespace PokerLibraryUnitTests
         }
 
         [TestMethod]
-        public void TestRankHan()
+        public void TestRankHand()
         {
             // Test an example of each of the 9 ranks we expcect for this game
             // Noting that rank 0 is not possible in this game (because the Joker is dead! R.I.P Heath Ledger!

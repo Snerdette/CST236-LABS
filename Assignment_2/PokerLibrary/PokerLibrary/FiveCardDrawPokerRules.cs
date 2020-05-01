@@ -23,6 +23,7 @@ namespace PokerLibrary
             throw new NotImplementedException();
         }
 
+        // Rank 1 - 9, 0 is not possible
         public int RightHand(IHand h)
         {
             throw new NotImplementedException();
