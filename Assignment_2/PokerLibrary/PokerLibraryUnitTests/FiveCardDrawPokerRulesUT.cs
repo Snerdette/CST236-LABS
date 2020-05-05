@@ -45,7 +45,7 @@ namespace PokerLibraryUnitTests
             foreach (ICard c in h)
             {
                 Assert.AreEqual(c.Suit, CardSuit.Club);
-                Assert.AreEqual(c.Face, i);
+                Assert.AreEqual(c.Face, (CardFace)i);
                 i++;
             }
             Assert.AreEqual(i, 7); // The last card shoild be a 6
@@ -74,8 +74,76 @@ namespace PokerLibraryUnitTests
         {
             // Test an example of each of the 9 ranks we expcect for this game
             // Noting that rank 0 is not possible in this game (because the Joker is dead! R.I.P Heath Ledger!
+            //structure of this test case is...
+            // create a collection of hands w/ expected rannk
+            // loop through collection, cal RankHand() and compare actual vs expected
+            // fail the test when the first expected is NOT equal to the actual result
+            
             IPokerRules pr = new FiveCardDrawPokerRules();
-            //Assert.AreEqual(1, pr.RankHand());
+            List<RankTestHand> testCases = CreateRankTestHands();
+            foreach (RankTestHand h in testCases)
+            {
+                Assert.AreEqual(h.rank, pr.RankHand(h.hand));
+            }
+        }
+
+        private class RankTestHand
+        {
+            public IHand hand;
+            public int rank;
+
+            public RankTestHand(IHand h, int r)
+            {
+                hand = h;
+                rank = r;
+            }
+        }
+
+        private List<RankTestHand> CreateRankTestHands()
+        {
+            List<RankTestHand> result = new List<RankTestHand>();
+
+            result.Add(new RankTestHand(CreateHand("5S 6S 4S 8S 7S"), 1));
+            result.Add(new RankTestHand(CreateHand("5D 6C 4H 8S 7D"), 5));
+            result.Add(new RankTestHand(CreateHand("4S 6S 8S JS AS"), 4));
+            result.Add(new RankTestHand(CreateHand("4D 6C 8H JS AD"), 9));
+
+            return result;
+        }
+
+        private IHand CreateHand(string s)
+        {
+            PokerHand hand = new PokerHand();
+            string[] cards = s.Split( ' ');
+            foreach (string card in cards)
+            {
+                CardSuit suit = CardSuit.Club;
+                switch (card[1])
+                {
+                    case 'C': suit = CardSuit.Club; break;
+                    case 'D': suit = CardSuit.Diamond; break;
+                    case 'S': suit = CardSuit.Spade; break;
+                    case 'H': suit = CardSuit.Heart; break;
+                }
+                CardFace face = CardFace.AceHigh;
+                switch (card[0])
+                {
+                    case 'J': face = CardFace.Jack; break;
+                    case 'Q': face = CardFace.Queen; break;
+                    case 'K': face = CardFace.King; break;
+                    case 'A': face = CardFace.AceHigh; break;
+                    default:
+                        {
+                            string faceString = card.Substring(0, 1);
+                            int faceInt = int.Parse(faceString);
+                            face = (CardFace)faceInt; 
+                        }
+                        break;
+                }
+
+                hand.Add(new PokerCard(suit, face));
+            }
+            return hand;
         }
     }
     

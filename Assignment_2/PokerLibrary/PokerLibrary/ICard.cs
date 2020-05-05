@@ -22,7 +22,7 @@ namespace PokerLibrary
         Eight = 8,
         Nine = 9,
         Ten = 10,
-        Joker = 11,
+        Jack = 11,
         Queen = 12,
         King = 13,
         AceHigh = 14

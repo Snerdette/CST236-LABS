@@ -9,36 +9,40 @@ namespace PokerLibrary
 {
     public class PokerHand : IHand
     {
-        public int Count => throw new NotImplementedException();
+        private List<ICard> cards;
 
         public PokerHand()
         {
+            // Empty hand
+            cards = new List<ICard>();
 
         }
 
-        public PokerHand(ICard[] cards)
+        public PokerHand(ICard[] initialCards)
         {
-
+            // hand with initial cards
+            cards = new List<ICard>(initialCards);
         }
 
+        public int Count { get { return cards.Count; } }
         public void Add(ICard c)
         {
-            throw new NotImplementedException();
+            cards.Add(c);
         }
 
         public void Remove(ICard c)
         {
-            throw new NotImplementedException();
+            cards.Remove(c);
         }
 
         public IEnumerator<ICard> GetEnumerator()
         {
-            throw new NotImplementedException();
+            return cards.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return cards.GetEnumerator();
         }
         
     }

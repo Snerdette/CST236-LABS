@@ -8,24 +8,21 @@ namespace PokerLibrary
 {
     public class PokerCard : ICard
     {
+        private CardSuit suit;
+        private CardFace face;
 
-        public PokerCard(CardSuit suit, CardFace face)
+        public PokerCard(CardSuit s, CardFace f)
         {
-
+            suit = s;
+            face = f;
         }
 
-        public CardSuit Suit => throw new NotImplementedException();
+        public CardSuit Suit { get { return suit; } }
+        public CardFace Face { get { return face; } }
 
-        public CardFace Face => throw new NotImplementedException();
-
-        //public static bool operator==(PokerCard c1, PokerCard c2)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public static bool operator !=(PokerCard c1, PokerCard c2)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public override bool Equals(object obj)
+        {
+            return (obj is ICard) && (suit == (obj as ICard).Suit) && (face == (obj as ICard).Face);
+        }
     }
 }
