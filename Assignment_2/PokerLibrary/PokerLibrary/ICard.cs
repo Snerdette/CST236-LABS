@@ -4,10 +4,10 @@ namespace PokerLibrary
 {
     public enum CardSuit
     {
-        Club,
-        Heart,
-        Diamond,
-        Spade
+        Club = 0,
+        Heart = 1,
+        Diamond = 2,
+        Spade = 3
     }
 
     public enum CardFace
