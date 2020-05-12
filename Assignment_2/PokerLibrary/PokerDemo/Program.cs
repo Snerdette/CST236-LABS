@@ -22,7 +22,7 @@ namespace PokerDemo
             Console.WriteLine("Demo 1...");
             Console.WriteLine("Rank = " + pr.RankHand(h1));
             //Console.WriteLine("Name = " + pr.NameHand(h1));
-            // 2. Deal two hands print the rank and names of the hands, compare and print who wins.
+            // 2. Deal two hands print the rank and names of the hands, compare and print who wins. 
         }
     }
 }
